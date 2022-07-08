@@ -25,7 +25,8 @@ class TaskDetailViewModel @Inject constructor(
             "",
             Date(Calendar.getInstance().timeInMillis),
             TaskPriority.LOW,
-            TaskStatus.PENDING
+            TaskStatus.PENDING,
+            Date(0)
         )
     )
 

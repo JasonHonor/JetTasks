@@ -5,6 +5,8 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.bhavnathacker.jettasks.UserPreferences
 import com.bhavnathacker.jettasks.data.local.TaskDao
 import com.bhavnathacker.jettasks.data.local.TaskDatabase
@@ -24,6 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import javax.inject.Singleton
 
+
 private const val DATA_STORE_FILE_NAME = "user_prefs.pb"
 
 @Module
@@ -36,7 +39,8 @@ object AppModule {
             context,
             TaskDatabase::class.java,
             "task_db"
-        )
+        ).allowMainThreadQueries()
+            .addMigrations(MIGRATION_1_2)
             .build()
 
     @Singleton
@@ -84,4 +88,11 @@ object AppModule {
         )
     }
 
+    val MIGRATION_1_2: Migration = object : Migration(1, 2) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL(
+                "ALTER TABLE task_tbl ADD COLUMN completed INTEGER NOT NULL default 0"
+            )
+        }
+    }
 }
