@@ -108,6 +108,9 @@ fun TaskList(
                             .weight(1f)
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(text = stringResource(R.string.total_tasks) + " " + String.format("%d",tasks.size))
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(text = stringResource(R.string.show_completed_tasks))
                             Switch(
                                 checked = showCompleted,

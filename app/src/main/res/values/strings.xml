@@ -19,6 +19,7 @@
   <string name="sort">Sort</string>
   <string name="deadline">Deadline</string>
   <string name="show_completed_tasks">Show Completed Tasks</string>
+  <string name="total_tasks">Total Tasks</string>
   <string name="sort_by">Sort By</string>
   <string name="label_add_task">Add a Task</string>
 </resources>
