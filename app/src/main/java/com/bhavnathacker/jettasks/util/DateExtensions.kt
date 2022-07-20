@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 fun Date.formatDateToString(): String {
-    val format = SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault())
+    val format = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
     return format.format(this)
 }
 

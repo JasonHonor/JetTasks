@@ -13,6 +13,7 @@
   <string name="add_task_first">Please add task first!</string>
   <string name="date_picker">Date Picker</string>
   <string name="task_deadline">Task Deadline</string>
+  <string name="task_completed">Task Completed</string>
   <string name="menu_icon">Menu Icon</string>
   <string name="filter">Filter</string>
   <string name="sort">Sort</string>

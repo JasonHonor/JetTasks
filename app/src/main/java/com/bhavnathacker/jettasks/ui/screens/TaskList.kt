@@ -7,8 +7,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -27,7 +31,10 @@ import com.bhavnathacker.jettasks.ui.components.TaskChip
 import com.bhavnathacker.jettasks.ui.events.TaskListEvent
 import com.bhavnathacker.jettasks.ui.navigation.TaskScreens
 import com.bhavnathacker.jettasks.ui.viewmodels.TaskListViewModel
-import com.bhavnathacker.jettasks.util.*
+import com.bhavnathacker.jettasks.util.TestTags
+import com.bhavnathacker.jettasks.util.formatDateToString
+import java.time.LocalDate
+import java.util.*
 
 @ExperimentalComposeUiApi
 @Composable
@@ -173,6 +180,7 @@ fun TaskRow(
                     style = MaterialTheme.typography.subtitle2,
                     color = task.contentColor
                 )
+
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         imageVector = Icons.Default.DateRange, tint = task.contentColor,
@@ -183,6 +191,24 @@ fun TaskRow(
                         style = MaterialTheme.typography.body1,
                         color = task.contentColor
                     )
+                }
+
+                val c1 = Calendar.getInstance()
+                c1[2020, 1, 1, 0, 0] = 8
+                val dtStart = c1.time
+
+                if (task.completed.after(dtStart)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            imageVector = Icons.Default.Check, tint = task.contentColor,
+                            contentDescription = stringResource(id = R.string.task_deadline)
+                        )
+                        Text(
+                            text = task.completed.formatDateToString(),
+                            style = MaterialTheme.typography.body1,
+                            color = task.contentColor
+                        )
+                    }
                 }
             }
             Icon(imageVector = Icons.Default.Delete, tint = task.contentColor,
