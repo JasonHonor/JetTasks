@@ -22,4 +22,6 @@
   <string name="total_tasks">Total</string>
   <string name="sort_by">Sort By</string>
   <string name="label_add_task">Add a Task</string>
+    <string name="fallback_string" />
+  <string name="local_string">local</string>
 </resources>

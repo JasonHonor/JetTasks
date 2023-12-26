@@ -31,6 +31,7 @@ import com.bhavnathacker.jettasks.ui.components.TaskChip
 import com.bhavnathacker.jettasks.ui.events.TaskListEvent
 import com.bhavnathacker.jettasks.ui.navigation.TaskScreens
 import com.bhavnathacker.jettasks.ui.viewmodels.TaskListViewModel
+import com.bhavnathacker.jettasks.util.MultiLang
 import com.bhavnathacker.jettasks.util.TestTags
 import com.bhavnathacker.jettasks.util.formatDateToString
 import java.time.LocalDate
@@ -138,7 +139,8 @@ fun TaskList(
                             Text(text = stringResource(R.string.sort_by))
                             Spacer(modifier = Modifier.width(8.dp))
                             TaskChip(
-                                name = stringResource(id = R.string.priority),
+                                //name = stringResource(id = R.string.priority),
+                                name = MultiLang.getString("priority",R.string.priority),
                                 isSelected = isPrioritySortSelected,
                                 onSelectionChanged = { viewModel.onEvent(TaskListEvent.ChangeSortByPriority(it))})
                             TaskChip(
