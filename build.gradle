@@ -4,10 +4,10 @@ buildscript {
         compose_version = '1.5.4'
         hilt_version = '2.50'
         room_version = '2.6.1'
-        navigation_compose_version = '2.5.0'
+        navigation_compose_version = '2.7.6'
         hilt_navigation_compose_version = '1.0.0'
         constraintlayout_compose_version = '1.0.1'
-        lifecycle_version = '2.5.0'
+        lifecycle_version = '2.6.2'
         activity_compose_version = '1.5.0'
         coroutines_version = '1.7.3'
         datastore_version = '1.0.0'
@@ -21,10 +21,6 @@ buildscript {
         classpath 'com.android.tools.build:gradle:8.0.0'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20'
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
-
-
-
-
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

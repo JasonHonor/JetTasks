@@ -109,8 +109,7 @@ fun TaskList(
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(text = stringResource(R.string.total_tasks) + " " + String.format("%d",tasks.size))
-                        }
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Spacer(modifier = Modifier.width(8.dp))
                             Text(text = stringResource(R.string.show_completed_tasks))
                             Switch(
                                 checked = showCompleted,
@@ -122,9 +121,22 @@ fun TaskList(
                                     uncheckedTrackColor = MaterialTheme.colors.secondary.copy(0.5f)
                                 ), modifier = Modifier.testTag(TestTags.SHOW_COMPLETED_SWITCH))
                         }
+                        /*Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(text = stringResource(R.string.show_completed_tasks))
+                            Switch(
+                                checked = showCompleted,
+                                onCheckedChange = { viewModel.onEvent(TaskListEvent.ShowCompletedTasks(it)) },
+                                colors = SwitchDefaults.colors(
+                                    checkedThumbColor = MaterialTheme.colors.secondary,
+                                    uncheckedThumbColor = MaterialTheme.colors.onBackground.copy(0.5f),
+                                    checkedTrackColor = MaterialTheme.colors.secondary.copy(0.5f),
+                                    uncheckedTrackColor = MaterialTheme.colors.secondary.copy(0.5f)
+                                ), modifier = Modifier.testTag(TestTags.SHOW_COMPLETED_SWITCH))
+                        }*/
                         Spacer(modifier = Modifier.height(8.dp))
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(text = stringResource(R.string.sort_by))
+                            Spacer(modifier = Modifier.width(8.dp))
                             TaskChip(
                                 name = stringResource(id = R.string.priority),
                                 isSelected = isPrioritySortSelected,
