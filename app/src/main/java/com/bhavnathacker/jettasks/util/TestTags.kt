@@ -6,4 +6,6 @@ object TestTags {
     const val TASK_DEADLINE = "TASK_DEADLINE"
     const val TASK_PRIORITY = "TASK_PRIORITY"
     const val TASK_STATUS = "TASK_STATUS"
+    const val TASK_MEMO = "TASK_MEMO"
+    const val TASK_TAG = "TASK_TAG"
 }

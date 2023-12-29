@@ -24,4 +24,7 @@
   <string name="label_add_task">Add a Task</string>
     <string name="fallback_string" />
   <string name="local_string">local</string>
+  <string name="label_memo">memo</string>
+  <string name="label_tag">tag</string>
+
 </resources>

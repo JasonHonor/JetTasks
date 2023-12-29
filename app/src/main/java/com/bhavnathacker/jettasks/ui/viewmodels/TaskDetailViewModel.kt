@@ -26,7 +26,9 @@ class TaskDetailViewModel @Inject constructor(
             Date(Calendar.getInstance().timeInMillis),
             TaskPriority.LOW,
             TaskStatus.PENDING,
-            Date(0)
+            Date(0),
+            "",
+            ""
         )
     )
 
@@ -39,6 +41,8 @@ class TaskDetailViewModel @Inject constructor(
             is TaskDetailEvent.ChangeDeadline -> _taskState.value = taskState.value.copy(deadline = event.newDate)
             is TaskDetailEvent.ChangePriority -> _taskState.value = taskState.value.copy(priority = event.newPriority)
             is TaskDetailEvent.ChangeStatus -> _taskState.value = taskState.value.copy(status = event.newStatus)
+            is TaskDetailEvent.ChangeTag -> _taskState.value = taskState.value.copy(tag = event.newValue)
+            is TaskDetailEvent.ChangeMemo -> _taskState.value = taskState.value.copy(memo = event.newValue)
         }
     }
 

@@ -17,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -55,7 +54,7 @@ fun TaskList(
 
     Column {
         TopAppBar(title = {
-            Text(text = stringResource(id = R.string.app_name))
+            Text(text = MultiLang.getString("app_name",R.string.app_name))
         }, backgroundColor = MaterialTheme.colors.primary)
 
         ConstraintLayout(
@@ -89,7 +88,7 @@ fun TaskList(
                             end.linkTo(parent.end)
                             bottom.linkTo(parent.bottom)
                         },
-                    text = stringResource(R.string.msg_no_tasks),
+                    text = MultiLang.getString("msg_no_tasks",R.string.msg_no_tasks),
                     style = MaterialTheme.typography.subtitle1,
                     fontWeight = FontWeight.Bold
                 )
@@ -109,9 +108,9 @@ fun TaskList(
                             .weight(1f)
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(text = stringResource(R.string.total_tasks) + " " + String.format("%d",tasks.size))
+                            Text(text = MultiLang.getString("total_tasks",R.string.total_tasks) + " " + String.format("%d",tasks.size))
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text(text = stringResource(R.string.show_completed_tasks))
+                            Text(text = MultiLang.getString("show_completed_tasks",R.string.show_completed_tasks))
                             Switch(
                                 checked = showCompleted,
                                 onCheckedChange = { viewModel.onEvent(TaskListEvent.ShowCompletedTasks(it)) },
@@ -136,15 +135,15 @@ fun TaskList(
                         }*/
                         Spacer(modifier = Modifier.height(8.dp))
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(text = stringResource(R.string.sort_by))
+                            Text(text = MultiLang.getString("sort_by",R.string.sort_by))
                             Spacer(modifier = Modifier.width(8.dp))
                             TaskChip(
-                                //name = stringResource(id = R.string.priority),
+                                //name = MultiLang.getString( R.string.priority),
                                 name = MultiLang.getString("priority",R.string.priority),
                                 isSelected = isPrioritySortSelected,
                                 onSelectionChanged = { viewModel.onEvent(TaskListEvent.ChangeSortByPriority(it))})
                             TaskChip(
-                                name = stringResource(id = R.string.deadline),
+                                name = MultiLang.getString("deadline",R.string.deadline),
                                 isSelected = isDeadlineSortSelected,
                                 onSelectionChanged = { viewModel.onEvent(TaskListEvent.ChangeSortByDeadline(it))})
                         }
@@ -153,7 +152,7 @@ fun TaskList(
                         modifier = Modifier
                             .padding(8.dp), onClick = { navController.navigate(TaskScreens.DetailScreen.name + "/-1") }
                     ) {
-                        Icon(Icons.Filled.Add, stringResource(R.string.add_task))
+                        Icon(Icons.Filled.Add, MultiLang.getString("add_task",R.string.add_task))
                     }
                 }
             }
@@ -201,7 +200,7 @@ fun TaskRow(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         imageVector = Icons.Default.DateRange, tint = task.contentColor,
-                        contentDescription = stringResource(id = R.string.task_deadline)
+                        contentDescription = MultiLang.getString("task_deadline", R.string.task_deadline)
                     )
                     Text(
                         text = task.deadline.formatDateToString(),
@@ -218,7 +217,7 @@ fun TaskRow(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
                             imageVector = Icons.Default.Check, tint = task.contentColor,
-                            contentDescription = stringResource(id = R.string.task_deadline)
+                            contentDescription = MultiLang.getString( "task_deadline",R.string.task_deadline)
                         )
                         Text(
                             text = task.completed.formatDateToString(),
@@ -229,7 +228,7 @@ fun TaskRow(
                 }
             }
             Icon(imageVector = Icons.Default.Delete, tint = task.contentColor,
-                contentDescription = stringResource(R.string.delete_task),
+                contentDescription = MultiLang.getString("del_task",R.string.delete_task),
                 modifier = Modifier
                     .padding(end = 8.dp)
                     .clickable { onDeleteTask(task) })

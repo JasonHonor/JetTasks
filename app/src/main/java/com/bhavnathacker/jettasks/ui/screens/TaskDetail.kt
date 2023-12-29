@@ -12,7 +12,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -22,12 +21,17 @@ import com.bhavnathacker.jettasks.domain.model.TaskStatus
 import com.bhavnathacker.jettasks.ui.components.*
 import com.bhavnathacker.jettasks.ui.events.TaskDetailEvent
 import com.bhavnathacker.jettasks.ui.viewmodels.TaskDetailViewModel
+import com.bhavnathacker.jettasks.util.MultiLang
 import com.bhavnathacker.jettasks.util.TestTags
 import com.bhavnathacker.jettasks.util.getDateWithoutTime
 
 @ExperimentalComposeUiApi
 @Composable
-fun TaskDetail(navController: NavController, taskId: Int?, viewModel: TaskDetailViewModel = hiltViewModel()) {
+fun TaskDetail(
+    navController: NavController,
+    taskId: Int?,
+    viewModel: TaskDetailViewModel = hiltViewModel()
+) {
     val context = LocalContext.current
 
     taskId?.let {
@@ -44,10 +48,12 @@ fun TaskDetail(navController: NavController, taskId: Int?, viewModel: TaskDetail
     var priorityExpanded by remember { mutableStateOf(false) }
     val defaultPriorityIndex = TaskPriority.values().indexOf(task.priority)
     var selectedPriorityIndex = if (defaultPriorityIndex != -1) defaultPriorityIndex else 0
+    val tag = task.tag
+    val memo = task.memo
 
     Column {
         TopAppBar(title = {
-            Text(text = stringResource(id = R.string.app_name))
+            Text(text = MultiLang.getString("app_name", R.string.app_name))
         }, backgroundColor = MaterialTheme.colors.primary)
 
         Column(
@@ -64,7 +70,7 @@ fun TaskDetail(navController: NavController, taskId: Int?, viewModel: TaskDetail
             ) {
                 TaskInputText(
                     text = name,
-                    label = stringResource(R.string.label_add_task),
+                    label = MultiLang.getString("label_add_task", R.string.label_add_task),
                     testTag = TestTags.TASK_NAME,
                     onTextChange = { viewModel.onEvent(TaskDetailEvent.ChangeName(it)) })
             }
@@ -72,18 +78,20 @@ fun TaskDetail(navController: NavController, taskId: Int?, viewModel: TaskDetail
             Spacer(modifier = Modifier.height(20.dp))
 
             Text(
-                text = stringResource(R.string.task_deadline),
+                text = MultiLang.getString("task_deadline", R.string.task_deadline),
                 color = MaterialTheme.colors.onBackground
             )
-            TaskDatePicker(selectedDate,
-                testTag = TestTags.TASK_DEADLINE) { date ->
+            TaskDatePicker(
+                selectedDate,
+                testTag = TestTags.TASK_DEADLINE
+            ) { date ->
                 viewModel.onEvent(TaskDetailEvent.ChangeDeadline(date.getDateWithoutTime()))
             }
 
             Spacer(modifier = Modifier.height(20.dp))
 
             Text(
-                text = stringResource(R.string.task_priority),
+                text = MultiLang.getString("task_priority", R.string.task_priority),
                 color = MaterialTheme.colors.onBackground
             )
 
@@ -113,20 +121,54 @@ fun TaskDetail(navController: NavController, taskId: Int?, viewModel: TaskDetail
             Spacer(modifier = Modifier.height(20.dp))
 
             TaskSwitch(
-                stringResource(id = R.string.completed),
+                MultiLang.getString("completed", R.string.completed),
                 status == TaskStatus.COMPLETED,
                 testTag = TestTags.TASK_STATUS,
                 onCheckChanged = { isChecked ->
-                    viewModel.onEvent(TaskDetailEvent.ChangeStatus( if (isChecked) TaskStatus.COMPLETED else TaskStatus.PENDING))
+                    viewModel.onEvent(TaskDetailEvent.ChangeStatus(if (isChecked) TaskStatus.COMPLETED else TaskStatus.PENDING))
                 })
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            val taskUpdatedMsg = stringResource(R.string.task_updated)
-            val taskAddedMsg = stringResource(R.string.task_added)
-            val addTaskMsg = stringResource(R.string.add_task_first)
+            Text(
+                text = MultiLang.getString("label_memo", R.string.label_memo),
+                color = MaterialTheme.colors.onBackground
+            )
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
 
-            TaskButton(text = stringResource(R.string.save), modifier = Modifier
+                InputText(
+                    text = memo,
+                    testTag = TestTags.TASK_MEMO,
+                    onTextChange = { viewModel.onEvent(TaskDetailEvent.ChangeMemo(it)) })
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = MultiLang.getString("label_tag", R.string.label_tag),
+                color = MaterialTheme.colors.onBackground
+            )
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+
+                InputText(
+                    text = tag,
+                    testTag = TestTags.TASK_TAG,
+                    onTextChange = { viewModel.onEvent(TaskDetailEvent.ChangeTag(it)) })
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            val taskUpdatedMsg = MultiLang.getString("task_updated", R.string.task_updated)
+            val taskAddedMsg = MultiLang.getString("task_added", R.string.task_added)
+            val addTaskMsg = MultiLang.getString("add_task_first", R.string.add_task_first)
+
+            TaskButton(text = MultiLang.getString("save", R.string.save), modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp),
                 onClick = {

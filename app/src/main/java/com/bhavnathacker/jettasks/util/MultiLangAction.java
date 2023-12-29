@@ -30,7 +30,7 @@ public class MultiLangAction implements LangAction {
 
     @Override
     public void langpack_getDifference(String lang_pack, String lang_code, int from_version, @NonNull final LangAction.GetDifferenceCallback callback) {
-        Server.request_langpack_getDifference(lang_pack, lang_code, from_version, new Server.GetDifferenceCallback() {
+        MLangServer.request_langpack_getDifference(lang_pack, lang_code, from_version, new MLangServer.GetDifferenceCallback() {
             @Override
             public void onNext(final LangPackDifference difference) {
                 runOnUIThread(new Runnable() {
@@ -45,7 +45,7 @@ public class MultiLangAction implements LangAction {
 
     @Override
     public void langpack_getLanguages(@NonNull final LangAction.GetLanguagesCallback callback) {
-        Server.request_langpack_getLanguages(new Server.GetLanguagesCallback() {
+        MLangServer.request_langpack_getLanguages(new MLangServer.GetLanguagesCallback() {
             @Override
             public void onNext(final List<LangPackLanguage> languageList) {
                 runOnUIThread(new Runnable() {
@@ -60,7 +60,7 @@ public class MultiLangAction implements LangAction {
 
     @Override
     public void langpack_getLangPack(String lang_code, @NonNull final LangAction.GetLangPackCallback callback) {
-        Server.request_langpack_getLangPack(lang_code, new Server.GetLangPackCallback() {
+        MLangServer.request_langpack_getLangPack(lang_code, new MLangServer.GetLangPackCallback() {
             @Override
             public void onNext(final LangPackDifference difference) {
                 runOnUIThread(new Runnable() {

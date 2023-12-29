@@ -17,7 +17,9 @@ data class Task(
     var deadline: Date,
     var priority: TaskPriority,
     var status: TaskStatus,
-    var completed: Date
+    var completed: Date,
+    var tag:String,
+    var memo:String,
 ) {
     val bgColor: Color
         get() {

@@ -4,7 +4,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -17,10 +16,10 @@ import androidx.compose.ui.text.input.ImeAction
 
 @ExperimentalComposeUiApi
 @Composable
-fun TaskInputText(
+fun InputText(
     modifier: Modifier = Modifier,
     text: String,
-    label: String,
+    label: String="",
     testTag: String = "",
     maxLine: Int = 1,
     onTextChange: (String) -> Unit,
