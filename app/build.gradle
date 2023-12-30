@@ -38,6 +38,7 @@ android {
     }
     buildFeatures {
         compose true
+        viewBinding true
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
@@ -65,6 +66,8 @@ dependencies {
 
     //Hilt-Dagger
     implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation 'androidx.annotation:annotation:1.7.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 

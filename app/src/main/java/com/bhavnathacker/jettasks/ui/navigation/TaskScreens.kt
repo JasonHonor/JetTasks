@@ -2,7 +2,8 @@ package com.bhavnathacker.jettasks.ui.navigation
 
 enum class TaskScreens {
     ListScreen,
-    DetailScreen;
+    DetailScreen,
+    LoginScreen;
     companion object {
         fun fromRoute(route: String?): TaskScreens =
             when (route?.substringBefore("/")) {

@@ -35,23 +35,8 @@ class MainActivity : ComponentActivity() {
                         TaskNavigation()
                     }
                 }
-                //containerLayout.removeAllViews()
-                //containerLayout.addView(detail)
-                /*for (info in MultiLang.getInstance().remoteLanguages) {
-                    val btn = Button(this@MainActivity)
-                    btn.setText(info.getSaveString())
-                    btn.setOnClickListener(object : View.OnClickListener {
-                        override fun onClick(v: View?) {
-                            MultiLang.applyLanguage(this@MainActivity, info)
-                            //rebuild()
-                        }
-                    })
-                    //containerLayout.addView(btn)
-                }*/
             }
         })
-
-
         //rebuild()
     }
     private fun rebuild() {

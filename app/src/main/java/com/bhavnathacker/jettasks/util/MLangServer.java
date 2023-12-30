@@ -47,6 +47,12 @@ public class MLangServer {
         list.add(new LangPackString("label_memo", "描述"));
         list.add(new LangPackString("label_tag", "标签"));
 
+        list.add(new LangPackString("msg_to_login", "请登录"));
+        list.add(new LangPackString("label_username", "用户名"));
+        list.add(new LangPackString("label_password", "密码"));
+
+        list.add(new LangPackString("btn_login", "立即登录"));
+
         return list;
     }
 

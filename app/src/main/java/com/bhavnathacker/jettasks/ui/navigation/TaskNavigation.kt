@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.bhavnathacker.jettasks.domain.model.Task
+import com.bhavnathacker.jettasks.ui.screens.Login
 import com.bhavnathacker.jettasks.ui.screens.TaskDetail
 import com.bhavnathacker.jettasks.ui.screens.TaskList
 
@@ -17,7 +17,14 @@ fun TaskNavigation() {
     val navController = rememberNavController()
 
     NavHost(navController = navController,
-            startDestination = TaskScreens.ListScreen.name) {
+            startDestination = TaskScreens.LoginScreen.name) {
+
+        //startDestination = TaskScreens.ListScreen.name
+
+        composable(TaskScreens.LoginScreen.name) {
+            //TaskList(navController)
+            Login(navController)
+        }
 
         composable(TaskScreens.ListScreen.name) {
             TaskList(navController)
