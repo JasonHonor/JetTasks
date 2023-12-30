@@ -20,6 +20,7 @@ data class Task(
     var completed: Date,
     var tag:String,
     var memo:String,
+    var deleted:Date,
 ) {
     val bgColor: Color
         get() {

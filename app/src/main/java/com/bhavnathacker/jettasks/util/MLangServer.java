@@ -53,6 +53,14 @@ public class MLangServer {
 
         list.add(new LangPackString("btn_login", "立即登录"));
 
+        list.add(new LangPackString("title_delete_confirm", "请确认"));
+
+        list.add(new LangPackString("msg_delete_confirm", "您确实要删除此项数据？"));
+
+        list.add(new LangPackString("btn_confirm_ok", "是的"));
+
+        list.add(new LangPackString("btn_confirm_cancel", "取消"));
+
         return list;
     }
 

@@ -39,5 +39,10 @@
     <string name="label_username">username</string>
     <string name="label_password">password</string>
     <string name="btn_login">Login</string>
+    <string name="delete_confirm">delete?</string>
+    <string name="title_delete_confirm">Confirm</string>
+    <string name="msg_delete_confirm">Are you sure to delete?</string>
+    <string name="btn_confirm_ok">Ok</string>
+    <string name="btn_confirm_cancel">Cancel</string>
 
 </resources>

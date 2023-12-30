@@ -42,6 +42,7 @@ object AppModule {
         ).allowMainThreadQueries()
             .addMigrations(MIGRATION_1_2)
             .addMigrations(MIGRATION_2_3)
+            .addMigrations(MIGRATION_3_4)
             .build()
 
     @Singleton
@@ -104,6 +105,14 @@ object AppModule {
             )
             database.execSQL(
                 "ALTER TABLE task_tbl ADD COLUMN memo TEXT NOT NULL default ''"
+            )
+        }
+    }
+
+    val MIGRATION_3_4: Migration = object : Migration(3, 4) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL(
+                "ALTER TABLE task_tbl ADD COLUMN deleted INTEGER NOT NULL default 0"
             )
         }
     }

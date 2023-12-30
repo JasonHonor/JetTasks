@@ -28,7 +28,8 @@ class TaskDetailViewModel @Inject constructor(
             TaskStatus.PENDING,
             Date(0),
             "",
-            ""
+            "",
+            Date(0)
         )
     )
 

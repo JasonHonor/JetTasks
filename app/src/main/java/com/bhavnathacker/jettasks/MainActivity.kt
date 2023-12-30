@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
 
                 setContent {
                     JetTasksTheme {
-                        TaskNavigation()
+                        TaskNavigation(this@MainActivity)
                     }
                 }
             }

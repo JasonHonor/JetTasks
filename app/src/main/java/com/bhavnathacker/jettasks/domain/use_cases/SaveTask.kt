@@ -7,9 +7,15 @@ import java.util.*
 
 class SaveTask(val repository: TaskRepository) {
     suspend operator fun invoke(task: Task) {
+
         if (task.status==TaskStatus.COMPLETED) {
             task.completed = Date(Calendar.getInstance().timeInMillis);
         }
+
+        if (task.status==TaskStatus.DELETED) {
+            task.deleted = Date(Calendar.getInstance().timeInMillis);
+        }
+
         repository.saveTask(task)
     }
 }

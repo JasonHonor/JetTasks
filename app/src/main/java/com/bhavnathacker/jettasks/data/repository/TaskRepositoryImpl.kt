@@ -12,6 +12,7 @@ import javax.inject.Inject
 class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao): TaskRepository {
     override suspend fun saveTask(task: Task) = taskDao.insert(task)
     override suspend fun deleteTask(task: Task) = taskDao.deleteTask(task)
+
     override suspend fun getTask(id: Int?): Task? = taskDao.getTask(id)
     override fun getAllTasks(): Flow<List<Task>> = taskDao.getTasks().flowOn(Dispatchers.IO)
             .conflate()

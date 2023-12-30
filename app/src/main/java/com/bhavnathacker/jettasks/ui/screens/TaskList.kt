@@ -1,5 +1,8 @@
 package com.bhavnathacker.jettasks.ui.screens
 
+import android.app.AlertDialog
+import android.content.Context
+import android.view.View
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -36,10 +39,38 @@ import com.bhavnathacker.jettasks.util.formatDateToString
 import java.time.LocalDate
 import java.util.*
 
+/**kotlin显示 alertDialog**/
+private fun showAlertDialog(ctx: Context,action:OnConfirm) {
+    var builder=AlertDialog.Builder(ctx)
+    builder.setTitle(MultiLang.getString("title_delete_confirm",R.string.title_delete_confirm))
+    builder.setMessage(MultiLang.getString("msg_delete_confirm",R.string.msg_delete_confirm))
+    builder.setPositiveButton(MultiLang.getString("btn_confirm_ok",R.string.btn_confirm_ok)){dialog, which ->
+        //LogUtil.i("====kotlin确认=====")
+        //val b = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        action.Ok()
+        //b.setOnClickListener(listener)
+        //toast("====kotlin确认=====")
+    }
+    builder.setNegativeButton(MultiLang.getString("btn_confirm_cancel",R.string.btn_confirm_cancel)){dialog, which ->
+        //LogUtil.i("====kotlin取消=====")
+        //toast("====kotlin取消=====")
+    }
+
+    var dialog:AlertDialog=builder.create()
+    if (!dialog.isShowing) {
+        dialog.show()
+    }
+}
+
+public interface OnConfirm{
+    fun Ok();
+}
+
 @ExperimentalComposeUiApi
 @Composable
 fun TaskList(
     navController: NavController,
+    context:Context,
     viewModel: TaskListViewModel = hiltViewModel()
 ) {
     val taskUiState = viewModel.tasksUiModelStateFlow.collectAsState().value
@@ -75,7 +106,14 @@ fun TaskList(
                 items(tasks) { task ->
                     TaskRow(task = task,
                         onViewTask = { navController.navigate(TaskScreens.DetailScreen.name + "/${it.id}") },
-                        onDeleteTask = { viewModel.onEvent(TaskListEvent.DeleteTask(it)) })
+                        onDeleteTask = {
+                            showAlertDialog(context, object : OnConfirm {
+                                override fun Ok() {
+                                    viewModel.onEvent(TaskListEvent.MaskTask(it))
+                                }
+                            })
+                        }
+                    )
                 }
             }
 

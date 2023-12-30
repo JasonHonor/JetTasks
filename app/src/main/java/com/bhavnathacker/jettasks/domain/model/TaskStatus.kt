@@ -1,7 +1,7 @@
 package com.bhavnathacker.jettasks.domain.model
 
 enum class TaskStatus {
-    PENDING, COMPLETED;
+    PENDING, COMPLETED,DELETED;
 
     companion object {
         fun getList(): List<String> {

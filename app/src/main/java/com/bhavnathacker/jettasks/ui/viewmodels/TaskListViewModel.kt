@@ -86,6 +86,10 @@ class TaskListViewModel @Inject constructor(
         when (event) {
             is TaskListEvent.DeleteTask ->
                 viewModelScope.launch { taskUseCases.deleteTask(event.task) }
+            is TaskListEvent.MaskTask -> {
+                event.task.status = TaskStatus.DELETED
+                viewModelScope.launch { taskUseCases.saveTask(event.task) }
+            }
             is TaskListEvent.ShowCompletedTasks -> viewModelScope.launch {
                 userPreferenceUseCases.updateShowCompleted(event.show)
             }

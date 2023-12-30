@@ -1,5 +1,6 @@
 package com.bhavnathacker.jettasks.ui.viewmodels
 
+import android.widget.Toast
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -53,7 +54,11 @@ class LoginViewModel @Inject constructor(
 
     public fun onEvent(event: LoginEvent) {
         when (event) {
-            is LoginEvent.preauth ->{}
+            is LoginEvent.preauth ->{
+                if (_taskState.value.username=="demo") {
+                    //do login check
+                }
+            }
             is LoginEvent.ChangePassword -> _taskState.value =
                 taskState.value.copy(password = event.newValue)
             is LoginEvent.ChangeUsername -> _taskState.value =

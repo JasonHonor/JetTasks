@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -30,6 +31,7 @@ import com.bhavnathacker.jettasks.ui.components.TaskMenu
 import com.bhavnathacker.jettasks.ui.components.TaskSwitch
 import com.bhavnathacker.jettasks.ui.events.LoginEvent
 import com.bhavnathacker.jettasks.ui.events.TaskDetailEvent
+import com.bhavnathacker.jettasks.ui.navigation.TaskScreens
 import com.bhavnathacker.jettasks.ui.viewmodels.LoginViewModel
 import com.bhavnathacker.jettasks.util.MultiLang
 import com.bhavnathacker.jettasks.util.TestTags
@@ -41,6 +43,11 @@ fun Login(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
+    val task = viewModel.taskState.value
+    val username = task.username
+    val password = task.password
+
     Column {
         TopAppBar(title = {
             Text(text = MultiLang.getString("app_name", R.string.app_name)+" Login")
@@ -53,9 +60,7 @@ fun Login(
             horizontalAlignment = Alignment.Start
         ) {
 
-            val task = viewModel.taskState.value
-            val username = task.username
-            val password = task.password
+
 
             Text(
                 text = MultiLang.getString("label_username", R.string.label_username),
@@ -93,11 +98,18 @@ fun Login(
 
             TaskButton(text = MultiLang.getString("btn_login", R.string.btn_login), modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 40.dp),
+                .padding(horizontal = 40.dp)
+                .height(50.dp),
                 onClick = {
                     val toastMessage: String
 
-                    viewModel.onEvent(LoginEvent.preauth(0))
+                    //viewModel.onEvent(LoginEvent.preauth(0))
+
+                    Toast.makeText(context, "test", Toast.LENGTH_SHORT).show()
+
+                    if(username=="demo") {
+                        navController.navigate(TaskScreens.ListScreen.name);
+                    }
                     //Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
                 })
         }
