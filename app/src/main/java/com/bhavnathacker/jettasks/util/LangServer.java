@@ -9,7 +9,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 
-public class MLangServer {
+public class LangServer {
     public static ArrayList<LangPackString> englishStrings() {
         ArrayList<LangPackString> list = new ArrayList<>();
         list.add(new LangPackString("LanguageName", "English"));

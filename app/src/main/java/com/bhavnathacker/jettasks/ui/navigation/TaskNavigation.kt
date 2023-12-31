@@ -32,7 +32,7 @@ fun TaskNavigation(context: ComponentActivity) {
 
         composable(TaskScreens.SettingScreen.name) {
             //TaskList(navController)
-            SettingPage(navController)
+            SettingPage(context,navController)
         }
 
         composable(TaskScreens.ListScreen.name) {
