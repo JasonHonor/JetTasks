@@ -67,6 +67,14 @@ public class LangServer {
 
         list.add(new LangPackString("btn_settings", "设置"));
 
+        list.add(new LangPackString("label_server", "服务器地址"));
+
+        list.add(new LangPackString("btn_save_setting", "保存设置"));
+
+        list.add(new LangPackString("clean_langpack", "删除语言包"));
+
+        list.add(new LangPackString("finger_login", "指纹登录"));
+
         return list;
     }
 

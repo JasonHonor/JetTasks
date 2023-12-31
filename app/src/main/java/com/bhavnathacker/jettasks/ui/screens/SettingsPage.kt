@@ -1,26 +1,18 @@
 package com.bhavnathacker.jettasks.ui.screens
 
-import android.os.Build
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -29,30 +21,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.bhavnathacker.jettasks.MainActivity
 import com.bhavnathacker.jettasks.R
-import com.bhavnathacker.jettasks.ui.components.InputText
 import com.bhavnathacker.jettasks.ui.components.InputText2
-import com.bhavnathacker.jettasks.ui.components.PasswordText
-import com.bhavnathacker.jettasks.ui.components.TButton
 import com.bhavnathacker.jettasks.ui.components.TaskButton
-import com.bhavnathacker.jettasks.ui.components.TaskImageButton
-import com.bhavnathacker.jettasks.ui.events.LoginEvent
 import com.bhavnathacker.jettasks.ui.events.SettingsEvent
-import com.bhavnathacker.jettasks.ui.navigation.TaskScreens
-import com.bhavnathacker.jettasks.ui.viewmodels.LoginViewModel
 import com.bhavnathacker.jettasks.ui.viewmodels.SettingsViewModel
 import com.bhavnathacker.jettasks.util.App
-import com.bhavnathacker.jettasks.util.FingerPrint
-import com.bhavnathacker.jettasks.util.FingerPrintCallback
 import com.bhavnathacker.jettasks.util.MultiLang
 import com.bhavnathacker.jettasks.util.TestTags
-import com.wcz.fingerprintrecognitionmanager.FingerManager
-import com.wcz.fingerprintrecognitionmanager.dialog.BaseFingerDialog
-import dagger.hilt.android.internal.Contexts.getApplication
+import java.io.File
 
 @ExperimentalComposeUiApi
 @Composable
@@ -153,6 +132,22 @@ fun SettingPage(
             }
 
             Spacer(modifier = Modifier.height(20.dp))
+
+            TaskButton(text = MultiLang.getString("clean_langpack", R.string.clean_langpack),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 40.dp)
+                    .height(50.dp),
+                onClick = {
+                    //
+                    val filedir = context.filesDir;
+                    var lang_file = "remote_zh.xml"
+                    if(!context.deleteFile(lang_file)) {
+                        Toast.makeText(context, "LangPack delete failed!", Toast.LENGTH_SHORT).show()
+                    }else {
+                        Toast.makeText(context, "LangPack delete ok!", Toast.LENGTH_SHORT).show()
+                    }
+                })
 
         }
     }
