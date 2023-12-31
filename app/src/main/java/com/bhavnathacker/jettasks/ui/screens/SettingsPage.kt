@@ -19,11 +19,15 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -31,6 +35,7 @@ import androidx.navigation.NavController
 import com.bhavnathacker.jettasks.MainActivity
 import com.bhavnathacker.jettasks.R
 import com.bhavnathacker.jettasks.ui.components.InputText
+import com.bhavnathacker.jettasks.ui.components.InputText2
 import com.bhavnathacker.jettasks.ui.components.PasswordText
 import com.bhavnathacker.jettasks.ui.components.TButton
 import com.bhavnathacker.jettasks.ui.components.TaskButton
@@ -63,6 +68,13 @@ fun SettingPage(
     task.server =taskUiState.server
 
     var server =task.server
+
+    var textFieldValueState =
+            TextFieldValue(
+            text = server,
+            selection = TextRange(server.length)
+        )
+
 
     Column {
         TopAppBar(title = {
@@ -118,8 +130,8 @@ fun SettingPage(
                     .fillMaxWidth()
             ) {
 
-                InputText(
-                    text = server,
+                InputText2(
+                    text = textFieldValueState,
                     testTag = TestTags.TASK_MEMO,
                     modifier = Modifier.onFocusChanged {
                         when {
@@ -135,7 +147,8 @@ fun SettingPage(
                         }
                     },
                     onTextChange = {
-                        viewModel.onEvent(SettingsEvent.ChangeServer(it))
+                        viewModel.onEvent(SettingsEvent.ChangeServer(it.text))
+                        textFieldValueState = it.copy(text = it.text, selection = TextRange(it.text.length), composition = it.composition)
                     })
             }
 

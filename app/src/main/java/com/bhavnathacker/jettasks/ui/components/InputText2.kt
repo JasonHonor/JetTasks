@@ -8,6 +8,7 @@ import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -23,27 +24,20 @@ import androidx.compose.ui.text.input.TextFieldValue
 
 @ExperimentalComposeUiApi
 @Composable
-fun InputText(
+fun InputText2(
     modifier: Modifier = Modifier,
-    text: String,
+    text: TextFieldValue,
     label: String="",
     testTag: String = "",
     maxLine: Int = 1,
-    onTextChange: (String) -> Unit,
+    onTextChange: (TextFieldValue) -> Unit,
     onImeAction: () -> Unit = {}
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
-    /*var textFieldValueState = remember {
-        mutableStateOf(TextFieldValue(
-            text = text,
-            selection = TextRange(text.length)
-        ))
-    }*/
+
     OutlinedTextField(
-        //value = textFieldValueState.value,
         value=text,
         onValueChange = onTextChange,
-        //onValueChange = { tfv -> textFieldValueState.value = tfv.copy(text = tfv.text, selection = TextRange(text.length-1), composition = tfv.composition)},
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = Color.Transparent
         ),
