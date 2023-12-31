@@ -124,6 +124,9 @@ dependencies {
     androidTestImplementation 'io.mockk:mockk-android:1.13.8'
     androidTestImplementation 'androidx.test:runner:1.5.2'
 
+    //finger_print
+    //implementation "io.github.WCaiZhu:FingerprintRecognitionManager:1.0.0"
+    implementation project (":FingerprintRecognitionManager")
 }
 
 protobuf {

@@ -1,6 +1,8 @@
 package com.bhavnathacker.jettasks.ui.navigation
 
 import android.content.Context
+import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavType
@@ -15,7 +17,7 @@ import com.bhavnathacker.jettasks.ui.screens.TaskList
 
 @ExperimentalComposeUiApi
 @Composable
-fun TaskNavigation(context: Context) {
+fun TaskNavigation(context: ComponentActivity) {
     val navController = rememberNavController()
 
     NavHost(navController = navController,
@@ -25,7 +27,7 @@ fun TaskNavigation(context: Context) {
 
         composable(TaskScreens.LoginScreen.name) {
             //TaskList(navController)
-            LoginPage(navController)
+            LoginPage(context,navController)
         }
 
         composable(TaskScreens.SettingScreen.name) {

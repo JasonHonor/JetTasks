@@ -1,6 +1,10 @@
 package com.bhavnathacker.jettasks.ui.screens
 
+import android.os.Build
+import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,21 +25,29 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.bhavnathacker.jettasks.MainActivity
 import com.bhavnathacker.jettasks.R
 import com.bhavnathacker.jettasks.ui.components.InputText
 import com.bhavnathacker.jettasks.ui.components.PasswordText
 import com.bhavnathacker.jettasks.ui.components.TButton
 import com.bhavnathacker.jettasks.ui.components.TaskButton
+import com.bhavnathacker.jettasks.ui.components.TaskImageButton
 import com.bhavnathacker.jettasks.ui.events.LoginEvent
 import com.bhavnathacker.jettasks.ui.navigation.TaskScreens
 import com.bhavnathacker.jettasks.ui.viewmodels.LoginViewModel
 import com.bhavnathacker.jettasks.util.App
+import com.bhavnathacker.jettasks.util.FingerPrint
+import com.bhavnathacker.jettasks.util.FingerPrintCallback
 import com.bhavnathacker.jettasks.util.MultiLang
 import com.bhavnathacker.jettasks.util.TestTags
+import com.wcz.fingerprintrecognitionmanager.FingerManager
+import com.wcz.fingerprintrecognitionmanager.dialog.BaseFingerDialog
+import dagger.hilt.android.internal.Contexts.getApplication
 
 @ExperimentalComposeUiApi
 @Composable
 fun LoginPage(
+    ctx: ComponentActivity,
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
@@ -43,7 +55,7 @@ fun LoginPage(
     val task = viewModel.taskState.value
     val username = task.username
     val password = task.password
-    val (version_name,version_code) = App.get_apk_version(context)
+    val (version_name, version_code) = App.get_apk_version(context)
 
     Column {
         //TopAppBar(title = {
@@ -53,7 +65,7 @@ fun LoginPage(
             modifier = Modifier
                 .fillMaxWidth(),
 
-            horizontalArrangement= Arrangement.End,
+            horizontalArrangement = Arrangement.End,
         ) {
             TButton(text = MultiLang.getString("btn_settings", R.string.btn_settings),
                 modifier = Modifier
@@ -72,11 +84,14 @@ fun LoginPage(
                 .fillMaxWidth()
                 .padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
+        ) {
             Text(
-                text = MultiLang.getString("app_name", R.string.app_name)+"(v"+version_name+"-"+String.format("%d",version_code)+")",
+                text = MultiLang.getString(
+                    "app_name",
+                    R.string.app_name
+                ) + "(v" + version_name + "-" + String.format("%d", version_code) + ")",
                 color = MaterialTheme.colors.onBackground,
-                fontSize= 24.sp
+                fontSize = 24.sp
             )
         }
 
@@ -120,19 +135,38 @@ fun LoginPage(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            TaskButton(text = MultiLang.getString("btn_login", R.string.btn_login), modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp)
-                .height(50.dp),
+            TaskButton(text = MultiLang.getString("btn_login", R.string.btn_login),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 40.dp)
+                    .height(50.dp),
                 onClick = {
-                    var toastMessage: String=MultiLang.getString("msg_login_ok",R.string.msg_login_ok)
+                    var toastMessage: String =
+                        MultiLang.getString("msg_login_ok", R.string.msg_login_ok)
                     //Toast.makeText(context, "test", Toast.LENGTH_SHORT).show()
-                    if(username=="demo") {
+                    if (username == "demo") {
                         navController.navigate(TaskScreens.ListScreen.name)
-                    }else {
-                        toastMessage=MultiLang.getString("msg_login_failed",R.string.msg_login_failed)
+                    } else {
+                        toastMessage =
+                            MultiLang.getString("msg_login_failed", R.string.msg_login_failed)
                     }
-                     Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
+                })
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            TaskButton(text = MultiLang.getString("finger_login", R.string.btn_finger_login),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 40.dp)
+                    .height(50.dp),
+                onClick = {
+                    //
+                    FingerPrint().check(ctx,object:FingerPrintCallback{
+                        override fun OnSuccess() {
+                            navController.navigate(TaskScreens.ListScreen.name)
+                        }
+                    })
                 })
         }
     }
