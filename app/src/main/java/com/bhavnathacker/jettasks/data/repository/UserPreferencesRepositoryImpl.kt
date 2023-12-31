@@ -86,4 +86,9 @@ class UserPreferencesRepositoryImpl @Inject constructor(private val userPreferen
             currentPreferences.toBuilder().setShowCompleted(completed).build()
         }
     }
+
+    override suspend fun updateServer(server: String) {
+        userPreferencesStore.updateData { currentPreferences ->currentPreferences.toBuilder().setServer(server).build()
+        }
+    }
 }

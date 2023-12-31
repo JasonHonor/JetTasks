@@ -6,5 +6,6 @@ import com.bhavnathacker.jettasks.domain.model.Task
 data class TaskUiModel(
     val tasks: List<Task>,
     val showCompleted: Boolean,
-    val sortOrder: SortOrder
+    val sortOrder: SortOrder,
+    val server:String
 )

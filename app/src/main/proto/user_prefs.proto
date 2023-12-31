@@ -18,4 +18,6 @@ message UserPreferences {
 
   // user selected tasks sorting order
   SortOrder sort_order = 2;
+
+  string server=3;
 }

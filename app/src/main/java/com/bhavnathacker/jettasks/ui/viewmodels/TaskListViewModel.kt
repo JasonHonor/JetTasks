@@ -47,13 +47,14 @@ class TaskListViewModel @Inject constructor(
                 userPreferences.sortOrder
             ),
             showCompleted = userPreferences.showCompleted,
-            sortOrder = userPreferences.sortOrder
+            sortOrder = userPreferences.sortOrder,
+            server = userPreferences.server
         )
     }
 
     var tasksUiModelStateFlow = tasksUiModelFlow.stateIn(
         viewModelScope, SharingStarted.Lazily, TaskUiModel(
-            emptyList(), false, SortOrder.NONE
+            emptyList(), false, SortOrder.NONE,""
         )
     )
 

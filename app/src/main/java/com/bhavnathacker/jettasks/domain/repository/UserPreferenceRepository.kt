@@ -11,4 +11,6 @@ interface UserPreferenceRepository {
   suspend fun enableSortByPriority(enable: Boolean)
 
   suspend fun updateShowCompleted(completed: Boolean)
+
+  suspend fun updateServer(server: String)
 }

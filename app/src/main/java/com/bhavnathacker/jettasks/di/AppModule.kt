@@ -86,7 +86,8 @@ object AppModule {
             getUserPreferences = GetUserPreferences(repository),
             updateShowCompleted = UpdateShowCompleted(repository),
             enableSortByDeadline = EnableSortByDeadline(repository),
-            enableSortByPriority = EnableSortByPriority(repository)
+            enableSortByPriority = EnableSortByPriority(repository),
+            updateServer = UpdateServer(repository)
         )
     }
 

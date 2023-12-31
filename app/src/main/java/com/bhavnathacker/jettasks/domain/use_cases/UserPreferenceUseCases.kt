@@ -4,5 +4,6 @@ data class UserPreferenceUseCases(
     val getUserPreferences: GetUserPreferences,
     val updateShowCompleted: UpdateShowCompleted,
     val enableSortByDeadline: EnableSortByDeadline,
-    val enableSortByPriority: EnableSortByPriority
+    val enableSortByPriority: EnableSortByPriority,
+    val updateServer: UpdateServer
 )

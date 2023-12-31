@@ -48,5 +48,8 @@
     <string name="msg_login_failed">login failed</string>
     <string name="btn_settings">settings</string>
     <string name="btn_finger_login">FingerLogin</string>
+    <string name="label_server">Server</string>
+    <string name="msg_no_server">Please configure server address first!</string>
+    <string name="btn_save_setting">Save</string>
 
 </resources>

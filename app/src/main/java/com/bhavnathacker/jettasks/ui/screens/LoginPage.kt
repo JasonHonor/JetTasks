@@ -17,6 +17,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -35,6 +36,7 @@ import com.bhavnathacker.jettasks.ui.components.TaskImageButton
 import com.bhavnathacker.jettasks.ui.events.LoginEvent
 import com.bhavnathacker.jettasks.ui.navigation.TaskScreens
 import com.bhavnathacker.jettasks.ui.viewmodels.LoginViewModel
+import com.bhavnathacker.jettasks.ui.viewmodels.SettingsViewModel
 import com.bhavnathacker.jettasks.util.App
 import com.bhavnathacker.jettasks.util.FingerPrint
 import com.bhavnathacker.jettasks.util.FingerPrintCallback
@@ -49,13 +51,16 @@ import dagger.hilt.android.internal.Contexts.getApplication
 fun LoginPage(
     ctx: ComponentActivity,
     navController: NavController,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: LoginViewModel = hiltViewModel(),
+    configModel: SettingsViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
     val task = viewModel.taskState.value
     val username = task.username
     val password = task.password
     val (version_name, version_code) = App.get_apk_version(context)
+    val taskUiState = configModel.tasksUiModelStateFlow.collectAsState().value
+    var server = taskUiState.server
 
     Column {
         //TopAppBar(title = {
@@ -143,6 +148,12 @@ fun LoginPage(
                 onClick = {
                     var toastMessage: String =
                         MultiLang.getString("msg_login_ok", R.string.msg_login_ok)
+                    if (server.isEmpty()) {
+                        toastMessage =
+                            MultiLang.getString("msg_no_server", R.string.msg_no_server)
+                        Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
+                        return@TaskButton
+                    }
                     //Toast.makeText(context, "test", Toast.LENGTH_SHORT).show()
                     if (username == "demo") {
                         navController.navigate(TaskScreens.ListScreen.name)
