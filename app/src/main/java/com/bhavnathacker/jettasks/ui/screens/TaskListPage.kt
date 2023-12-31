@@ -2,7 +2,6 @@ package com.bhavnathacker.jettasks.ui.screens
 
 import android.app.AlertDialog
 import android.content.Context
-import android.view.View
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -36,7 +35,6 @@ import com.bhavnathacker.jettasks.ui.viewmodels.TaskListViewModel
 import com.bhavnathacker.jettasks.util.MultiLang
 import com.bhavnathacker.jettasks.util.TestTags
 import com.bhavnathacker.jettasks.util.formatDateToString
-import java.time.LocalDate
 import java.util.*
 
 /**kotlin显示 alertDialog**/

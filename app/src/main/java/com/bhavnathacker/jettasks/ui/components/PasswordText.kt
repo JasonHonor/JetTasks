@@ -17,7 +17,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 
 @ExperimentalComposeUiApi
 @Composable
-fun InputText(
+fun PasswordText(
     modifier: Modifier = Modifier,
     text: String,
     label: String="",
@@ -36,6 +36,7 @@ fun InputText(
         ),
         maxLines = maxLine,
         label = { Text(text = label) },
+        visualTransformation = PasswordVisualTransformation('*'),
         keyboardOptions = KeyboardOptions.Default.copy(
             imeAction = ImeAction.Done
         ),

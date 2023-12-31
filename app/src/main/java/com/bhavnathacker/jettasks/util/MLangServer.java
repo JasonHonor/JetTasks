@@ -61,6 +61,12 @@ public class MLangServer {
 
         list.add(new LangPackString("btn_confirm_cancel", "取消"));
 
+        list.add(new LangPackString("msg_login_ok", "登录成功"));
+
+        list.add(new LangPackString("msg_login_failed", "登录失败"));
+
+        list.add(new LangPackString("btn_settings", "设置"));
+
         return list;
     }
 

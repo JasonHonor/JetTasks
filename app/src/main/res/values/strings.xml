@@ -44,5 +44,8 @@
     <string name="msg_delete_confirm">Are you sure to delete?</string>
     <string name="btn_confirm_ok">Ok</string>
     <string name="btn_confirm_cancel">Cancel</string>
+    <string name="msg_login_ok">login ok</string>
+    <string name="msg_login_failed">login failed</string>
+    <string name="btn_settings">settings</string>
 
 </resources>

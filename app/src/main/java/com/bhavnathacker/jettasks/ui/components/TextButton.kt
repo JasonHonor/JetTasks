@@ -3,20 +3,20 @@ package com.bhavnathacker.jettasks.ui.components
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 
 @Composable
-fun TaskButton(
+fun TButton(
     modifier: Modifier = Modifier,
     text: String,
     onClick: () -> Unit,
     enabled: Boolean = true
 ) {
-    Button(
+    TextButton(
         onClick = onClick,
-        //shape = CircleShape,
         enabled = enabled,
         modifier = modifier
     ) {

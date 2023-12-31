@@ -8,7 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.bhavnathacker.jettasks.ui.screens.Login
+import com.bhavnathacker.jettasks.ui.screens.LoginPage
+import com.bhavnathacker.jettasks.ui.screens.SettingPage
 import com.bhavnathacker.jettasks.ui.screens.TaskDetail
 import com.bhavnathacker.jettasks.ui.screens.TaskList
 
@@ -24,7 +25,12 @@ fun TaskNavigation(context: Context) {
 
         composable(TaskScreens.LoginScreen.name) {
             //TaskList(navController)
-            Login(navController)
+            LoginPage(navController)
+        }
+
+        composable(TaskScreens.SettingScreen.name) {
+            //TaskList(navController)
+            SettingPage(navController)
         }
 
         composable(TaskScreens.ListScreen.name) {
