@@ -130,23 +130,6 @@ fun TaskDetail(
             Spacer(modifier = Modifier.height(20.dp))
 
             Text(
-                text = MultiLang.getString("label_memo", R.string.label_memo),
-                color = MaterialTheme.colors.onBackground
-            )
-            Surface(
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-
-                InputText(
-                    text = memo,
-                    testTag = TestTags.TASK_MEMO,
-                    onTextChange = { viewModel.onEvent(TaskDetailEvent.ChangeMemo(it)) })
-            }
-
-            Spacer(modifier = Modifier.height(20.dp))
-
-            Text(
                 text = MultiLang.getString("label_tag", R.string.label_tag),
                 color = MaterialTheme.colors.onBackground
             )
@@ -159,6 +142,25 @@ fun TaskDetail(
                     text = tag,
                     testTag = TestTags.TASK_TAG,
                     onTextChange = { viewModel.onEvent(TaskDetailEvent.ChangeTag(it)) })
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = MultiLang.getString("label_memo", R.string.label_memo),
+                color = MaterialTheme.colors.onBackground
+            )
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+
+                InputText(
+                    text = memo,
+                    testTag = TestTags.TASK_MEMO,
+                    minLine = 2,
+                    maxLine = 5,
+                    onTextChange = { viewModel.onEvent(TaskDetailEvent.ChangeMemo(it)) })
             }
 
             Spacer(modifier = Modifier.height(20.dp))
