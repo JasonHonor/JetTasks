@@ -47,7 +47,11 @@ class TaskEndToEndTest {
                     startDestination = TaskScreens.ListScreen.name) {
 
                     composable(TaskScreens.ListScreen.name) {
-                        TaskList(navController)
+                        TaskList(
+                            navController,
+                            context = TODO(),
+                            viewModel = TODO()
+                        )
                     }
 
                     composable(TaskScreens.DetailScreen.name + "/{taskId}",

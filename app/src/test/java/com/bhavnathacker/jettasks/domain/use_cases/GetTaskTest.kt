@@ -8,7 +8,7 @@ import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import java.util.*
+import java.util.Date
 
 class GetTaskTest {
     private lateinit var getTask: GetTask
@@ -16,14 +16,62 @@ class GetTaskTest {
 
     @Before
     fun setup() {
-       fakeTaskRepository = FakeTaskRepository()
-       getTask = GetTask(fakeTaskRepository)
+        fakeTaskRepository = FakeTaskRepository()
+        getTask = GetTask(fakeTaskRepository)
 
         val tasksToInsert = mutableListOf<Task>()
-        tasksToInsert.add(Task(0, name =  "Task1", deadline = Date(), priority = TaskPriority.LOW, status = TaskStatus.PENDING))
-        tasksToInsert.add(Task(1, name =  "Task2", deadline = Date(), priority = TaskPriority.MEDIUM, status = TaskStatus.COMPLETED))
-        tasksToInsert.add(Task(2, name =  "Task3", deadline = Date(), priority = TaskPriority.HIGH, status = TaskStatus.PENDING))
-        tasksToInsert.add(Task(3, name =  "Task4", deadline = Date(), priority = TaskPriority.LOW, status = TaskStatus.COMPLETED))
+        tasksToInsert.add(
+            Task(
+                0,
+                name = "Task1",
+                deadline = Date(),
+                priority = TaskPriority.LOW,
+                completed = Date(),
+                tag = "tag",
+                memo = "memo",
+                deleted = Date(),
+                status = TaskStatus.PENDING
+            )
+        )
+        tasksToInsert.add(
+            Task(
+                1,
+                name = "Task2",
+                deadline = Date(),
+                priority = TaskPriority.MEDIUM,
+                completed = Date(),
+                tag = "tag",
+                memo = "memo",
+                deleted = Date(),
+                status = TaskStatus.COMPLETED
+            )
+        )
+        tasksToInsert.add(
+            Task(
+                2,
+                name = "Task3",
+                deadline = Date(),
+                priority = TaskPriority.HIGH,
+                completed = Date(),
+                tag = "tag",
+                memo = "memo",
+                deleted = Date(),
+                status = TaskStatus.PENDING
+            )
+        )
+        tasksToInsert.add(
+            Task(
+                3,
+                name = "Task4",
+                deadline = Date(),
+                priority = TaskPriority.LOW,
+                completed = Date(),
+                tag = "tag",
+                memo = "memo",
+                deleted = Date(),
+                status = TaskStatus.COMPLETED
+            )
+        )
 
         tasksToInsert.shuffle()
         runBlocking {

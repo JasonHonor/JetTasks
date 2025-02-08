@@ -6,7 +6,7 @@ import android.os.Build
 class App {
 
     companion object {
-        fun get_apk_version(ctx: Context):Pair<String,Long>
+        fun get_apk_version(ctx: Context):Pair<String?,Long>
         {
             val packageManager = ctx.packageManager
             val packageName = ctx.packageName

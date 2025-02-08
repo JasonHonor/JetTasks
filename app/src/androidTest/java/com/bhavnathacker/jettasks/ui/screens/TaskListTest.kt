@@ -40,7 +40,11 @@ class TaskListTest {
                     navController = navController,
                     startDestination = TaskScreens.ListScreen.name) {
                     composable(route = TaskScreens.ListScreen.name) {
-                        TaskList(navController = navController)
+                        TaskList(
+                            navController = navController,
+                            context = TODO(),
+                            viewModel = TODO()
+                        )
                     }
                 }
             }
