@@ -1,7 +1,10 @@
 package com.bhavnathacker.jettasks.ui.screens
 
 import android.widget.Toast
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -58,6 +61,7 @@ fun TaskDetail(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
                 .padding(8.dp),
             horizontalAlignment = Alignment.Start
         ) {
