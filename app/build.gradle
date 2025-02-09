@@ -67,10 +67,10 @@ android {
  */
 
 dependencies {
-    //Compose 1.6.8, can't upgrade to 1.7.7 because Icons was removed.
-    implementation "androidx.compose.ui:ui:1.6.8"
-    implementation "androidx.compose.material:material:1.6.8"
-    implementation "androidx.compose.ui:ui-tooling-preview:1.6.8"
+    implementation "androidx.compose.ui:ui:1.7.7"
+    implementation "androidx.compose.material:material:1.7.7"
+    implementation "androidx.compose.ui:ui-tooling-preview:1.7.7"
+    implementation "androidx.compose.material:material-icons-extended:1.7.7"
 
     implementation "androidx.constraintlayout:constraintlayout-compose:1.1.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7"
